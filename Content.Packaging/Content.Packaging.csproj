@@ -4,6 +4,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ServerGarbageCollection>True</ServerGarbageCollection>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Content.ModuleManager\Content.ModuleManager.csproj" />
+  </ItemGroup>
 
   <Import Project="../MSBuild/Content.props" />
 

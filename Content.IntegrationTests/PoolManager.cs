@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Content.IntegrationTests.Pair;
-using Content.Shared.CCVar;
 using Robust.UnitTesting;
 
 namespace Content.IntegrationTests;
@@ -101,13 +100,23 @@ public sealed class ContentPoolManager : PoolManager<TestPair>
     {
         DefaultCvars.AddRange(PoolManager.TestCvars);
 
-        var shared = extraAssemblies
-                .Append(typeof(Shared.Entry.EntryPoint).Assembly)
-                .Append(typeof(PoolManager).Assembly)
-                .ToArray();
+        PoolManager.DiscoverModules();
 
-        Startup([typeof(Client.Entry.EntryPoint).Assembly],
-            [typeof(Server.Entry.EntryPoint).Assembly],
+        var clientAssemblies = PoolManager.GetAssemblies(client: true, includePoolAssembly: false)
+            .Append(typeof(Client.Entry.EntryPoint).Assembly)
+            .ToArray();
+
+        var serverAssemblies = PoolManager.GetAssemblies(client: false, includePoolAssembly: false)
+            .Append(typeof(Server.Entry.EntryPoint).Assembly)
+            .ToArray();
+
+        var shared = extraAssemblies
+            .Append(typeof(Shared.Entry.EntryPoint).Assembly)
+            .Append(typeof(PoolManager).Assembly)
+            .ToArray();
+
+        Startup(clientAssemblies,
+            serverAssemblies,
             shared);
     }
 }
