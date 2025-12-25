@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.IO.Compression;
+using Content.ModuleManager;
 using Robust.Packaging;
 using Robust.Packaging.AssetProcessing;
 using Robust.Packaging.AssetProcessing.Passes;
@@ -19,6 +20,9 @@ public static class ServerPackaging
         new PlatformReg("osx-x64", "MacOS", true),
         new PlatformReg("osx-arm64", "MacOS", true),
         // Non-default platforms (i.e. for Watchdog Git)
+        new PlatformReg("win-x86", "Windows", false),
+        new PlatformReg("linux-x86", "Linux", false),
+        new PlatformReg("linux-arm", "Linux", false),
         new PlatformReg("freebsd-x64", "FreeBSD", false),
     };
 
@@ -37,9 +41,26 @@ public static class ServerPackaging
         .Select(o => o.Rid)
         .ToList();
 
+    private static readonly List<string> CoreServerContentAssemblies = new()
+    {
+        "Content.Server.Database",
+        "Content.Server",
+        "Content.Shared",
+        "Content.Shared.Database",
+        "Content.ModuleManager", // I cant be fucked to figure out how to this dynamically
+    };
+
+    private static readonly List<string> ServerExtraAssemblies = new()
+    {
+        // Python script had Npgsql. though we want Npgsql.dll as well soooo
+        "Npgsql",
+        "Microsoft",
+        "Concentus",
+    };
+
     private static readonly List<string> ServerNotExtraAssemblies = new()
     {
-        "JetBrains.Annotations",
+        "Microsoft.CodeAnalysis",
     };
 
     private static readonly HashSet<string> BinSkipFolders = new()
@@ -98,22 +119,28 @@ public static class ServerPackaging
 
         if (!skipBuild)
         {
-            var startInfo = new ProcessStartInfo
+            var serverModules = FindServerModules();
+
+            foreach (var module in serverModules)
             {
-                FileName = "dotnet",
-                ArgumentList =
+                var projectName = Path.GetFileName(module);
+                await ProcessHelpers.RunCheck(new ProcessStartInfo
                 {
-                    "build",
-                    Path.Combine("Content.Server", "Content.Server.csproj"),
-                    "-c", configuration,
-                    "--nologo",
-                    "/v:m",
-                    $"/p:TargetOs={platform.TargetOs}",
-                    "/t:Rebuild",
-                    "/p:FullRelease=true",
-                    "/m"
-                }
-            };
+                    FileName = "dotnet",
+                    ArgumentList =
+                    {
+                        "build",
+                        Path.Combine(module, $"{projectName}.csproj"),
+                        "-c", configuration,
+                        "--nologo",
+                        "/v:m",
+                        $"/p:TargetOs={platform.TargetOs}",
+                        "/t:Rebuild",
+                        "/p:FullRelease=true",
+                        "/m",
+                    },
+                });
+            }
 
             if (logBuild)
             {
@@ -140,6 +167,35 @@ public static class ServerPackaging
         }
 
         logger.Info($"Finished packaging server in {sw.Elapsed}");
+    }
+
+    private static List<string> FindServerModules(string path = ".")
+    {
+        var serverModules = new List<string> { "Content.Server" };
+
+        // Modules - Add modules from Modules/ directory
+        var discoveredModules = ModuleDiscovery.DiscoverModules(path)
+            .Where(m => m.Type == ModuleRole.Server)
+            .Select(m => Path.GetDirectoryName(m.ProjectPath))
+            .Where(dir => dir != null);
+
+        serverModules.AddRange(discoveredModules!);
+
+        return serverModules;
+    }
+
+    private static List<string> FindAllServerModules(string path = ".")
+    {
+        var modules = new List<string>(CoreServerContentAssemblies);
+
+        // Modules - Add modules from Modules/ directory
+        modules.AddRange(ModuleDiscovery.DiscoverModules(path)
+            .Where(m => m.Type != ModuleRole.Client)
+            .Select(m => m.Name)
+            .Distinct()
+        );
+
+        return modules;
     }
 
     private static async Task PublishClientServer(string runtime, string targetOs, string configuration)
@@ -186,22 +242,33 @@ public static class ServerPackaging
         var inputPassCore = graph.InputCore;
         var inputPassResources = graph.InputResources;
 
+        var contentAssemblies = FindAllServerModules();
+
         // Additional assemblies that need to be copied such as EFCore.
         var sourcePath = Path.Combine(contentDir, "bin", "Content.Server");
 
-        var deps = DepsHandler.Load(Path.Combine(sourcePath, "Content.Server.deps.json"));
+        // Should this be an asset pass?
+        // For future archaeologists I just want audio rework to work and need the audio pass so
+        // just porting this as is from python.
+        foreach (var fullPath in Directory.EnumerateFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+        {
+            var fileName = Path.GetFileNameWithoutExtension(fullPath);
 
-        var contentAssemblies = GetContentAssemblyNamesToCopy(deps);
+            if (!ServerNotExtraAssemblies.Any(o => fileName.StartsWith(o)) && ServerExtraAssemblies.Any(o => fileName.StartsWith(o)))
+            {
+                contentAssemblies.Add(fileName);
+            }
+        }
 
         await RobustSharedPackaging.DoResourceCopy(
             Path.Combine("RobustToolbox", "bin", "Server",
-            platform.Rid,
-            "publish"),
+                platform.Rid,
+                "publish"),
             inputPassCore,
             BinSkipFolders,
             cancel: cancel);
 
-        await RobustSharedPackaging.WriteContentAssemblies(
+        await WriteServerContentAssemblies(
             inputPassResources,
             contentDir,
             "Content.Server",
@@ -214,6 +281,8 @@ public static class ServerPackaging
             ServerContentIgnoresResources.Concat(SharedPackaging.AdditionalIgnoredResources).ToHashSet(),
             cancel);
 
+        await RobustServerPackaging.WriteServerResources(contentDir, inputPassResources, cancel);
+
         if (hybridAcz)
         {
             inputPassCore.InjectFileFromDisk("Content.Client.zip", Path.Combine("release", "SS14.Client.zip"));
@@ -223,20 +292,46 @@ public static class ServerPackaging
         inputPassResources.InjectFinished();
     }
 
-    // This returns both content assemblies (e.g. Content.Server.dll) and dependencies (e.g. Npgsql)
-    private static IEnumerable<string> GetContentAssemblyNamesToCopy(DepsHandler deps)
+    private static Task WriteServerContentAssemblies(
+        AssetPass pass,
+        string contentDir,
+        IEnumerable<string> contentAssemblies,
+        CancellationToken cancel = default)
     {
-        var depsContent = deps.RecursiveGetLibrariesFrom("Content.Server").SelectMany(GetLibraryNames);
-        var depsRobust = deps.RecursiveGetLibrariesFrom("Robust.Server").SelectMany(GetLibraryNames);
+        var mainBinDir = Path.Combine(contentDir, "bin", "Content.Server");
 
-        var depsContentExclusive = depsContent.Except(depsRobust).ToHashSet();
+        var moduleAssemblyPaths = ModuleDiscovery.DiscoverModules(contentDir)
+            .Where(m => m.Type == ModuleRole.Server)
+            .ToDictionary(
+                m => m.Name,
+                m => Path.Combine(GetModuleRoot(m.ProjectPath), "bin", "Content.Server")
+            );
 
-        // Remove .dll suffix and apply filtering.
-        var names = depsContentExclusive.Select(p => p[..^4]).Where(p => !ServerNotExtraAssemblies.Any(p.StartsWith));
+        foreach (var asm in contentAssemblies)
+        {
+            cancel.ThrowIfCancellationRequested();
 
-        return names;
+            var sourceDir = moduleAssemblyPaths.GetValueOrDefault(asm) ?? mainBinDir;
 
-        IEnumerable<string> GetLibraryNames(string library) => deps.Libraries[library].GetDllNames();
+            var dllPath = Path.Combine(sourceDir, $"{asm}.dll");
+            if (File.Exists(dllPath))
+                pass.InjectFileFromDisk($"Assemblies/{asm}.dll", dllPath);
+
+            var pdbPath = Path.Combine(sourceDir, $"{asm}.pdb");
+            if (File.Exists(pdbPath))
+                pass.InjectFileFromDisk($"Assemblies/{asm}.pdb", pdbPath);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private static string GetModuleRoot(string projectPath)
+    {
+        // Extracts the module root from the project path
+        // e.g., "Modules/GoobStation/Content.Goobstation.Server/Content.Goobstation.Server.csproj"
+        // -> "Modules/GoobStation"
+        var projectDir = Path.GetDirectoryName(projectPath);
+        return Path.GetDirectoryName(projectDir)!;
     }
 
     private readonly record struct PlatformReg(string Rid, string TargetOs, bool BuildByDefault);
