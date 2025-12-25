@@ -127,7 +127,7 @@ public static class ClientPackaging
             modules,
             cancel);
 
-        await RobustClientPackaging.WriteClientResources(contentDir, inputPass, cancel);
+        await RobustClientPackaging.WriteClientResources(contentDir, inputPass, SharedPackaging.AdditionalIgnoredResources, cancel);
 
         inputPass.InjectFinished();
     }
