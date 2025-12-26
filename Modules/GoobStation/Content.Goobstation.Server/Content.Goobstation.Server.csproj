@@ -1,16 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\..\..\bin\Content.Server\</OutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputType Condition="'$(FullRelease)' != 'True'">Exe</OutputType>
+    <NoWarn>1998</NoWarn>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <Nullable>enable</Nullable>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\..\RobustToolbox\Robust.Server\Robust.Server.csproj" />
-      <ProjectReference Include="..\Content.Goobstation.Common\Content.Goobstation.Common.csproj" />
-      <ProjectReference Include="..\Content.Goobstation.Maths\Content.Goobstation.Maths.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Content.Server\Content.Server.csproj" />
+    <ProjectReference Include="..\..\..\RobustToolbox\Robust.Server\Robust.Server.csproj" />
+    <ProjectReference Include="..\..\..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
+    <ProjectReference Include="..\Content.Goobstation.Common\Content.Goobstation.Common.csproj" />
+    <ProjectReference Include="..\Content.Goobstation.Maths\Content.Goobstation.Maths.csproj" />
+  </ItemGroup>
 
 </Project>
