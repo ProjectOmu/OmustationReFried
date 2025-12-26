@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Content.Server.Database\Content.Server.Database.csproj" />
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
+    <ProjectReference Include="..\Modules\GoobStation\Content.Goobstation.Maths\Content.Goobstation.Maths.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EntityEffects\" />

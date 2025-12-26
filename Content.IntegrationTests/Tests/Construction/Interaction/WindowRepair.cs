@@ -3,7 +3,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
+using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Construction.Interaction;
@@ -42,4 +42,3 @@ public sealed class WindowRepair : InteractionTest
         await AssertEntityLookup((RGlass, 2));
     }
 }
-

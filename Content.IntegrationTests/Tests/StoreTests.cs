@@ -2,7 +2,7 @@ using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.PDA.Ringer;
 using Content.Server.Traitor.Uplink;
-using Content.Shared.FixedPoint;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Store;
