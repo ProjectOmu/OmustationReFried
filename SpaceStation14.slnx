@@ -14,7 +14,13 @@
     <File Path="Tools/generate_hashes.ps1" />
   </Folder>
   <Folder Name="/Modules/" />
-  <Folder Name="/Modules/GoobStation/" />
+  <Folder Name="/Modules/GoobStation/">
+    <File Path="Modules/GoobStation/module.yml" />
+    <Project Path="Modules/GoobStation/Content.Goobstation.Maths/Content.Goobstation.Maths.csproj">
+      <BuildType Solution="DebugOpt|*" Project="Debug" />
+      <BuildType Solution="Tools|*" Project="Debug" />
+    </Project>
+  </Folder>
   <Folder Name="/MSBuild/">
     <File Path="MSBuild/Content.props" />
   </Folder>

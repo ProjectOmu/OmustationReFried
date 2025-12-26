@@ -1,5 +1,5 @@
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Storage;
 using Robust.Shared.Serialization;
 

@@ -1,5 +1,5 @@
 using Content.Shared.Damage.Components;
-using Content.Shared.FixedPoint;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;

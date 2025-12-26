@@ -1,6 +1,6 @@
 using System.Collections.Frozen;
 using System.Linq;
-using Content.Shared.FixedPoint;
+using Content.Goobstation.Maths.FixedPoint;
 using System.Text.Json.Serialization;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
