@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using Robust.Client;
+﻿using Robust.Client;
 
 namespace Content.Goobstation.Client;
 
