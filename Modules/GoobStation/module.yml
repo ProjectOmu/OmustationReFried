@@ -5,3 +5,15 @@ version: 1.0.0
 projects:
   - path: Content.Goobstation.Maths
     role: Common
+
+  - path: Content.Goobstation.Common
+    role: Common
+
+  - path: Content.Goobstation.Shared
+    role: Shared
+
+  - path: Content.Goobstation.Server
+    role: Server
+
+  - path: Content.Goobstation.Client
+    role: Client
