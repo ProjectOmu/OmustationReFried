@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Nett" />
-    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" PrivateAssets="All" />
+    <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
   </ItemGroup>
 
     <ItemGroup>
