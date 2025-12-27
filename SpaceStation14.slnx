@@ -26,10 +26,6 @@
       <BuildType Solution="DebugOpt|*" Project="Debug" />
       <BuildType Solution="Tools|*" Project="Debug" />
     </Project>
-    <Project Path="Modules/GoobStation/Content.Goobstation.Maths/Content.Goobstation.Maths.csproj">
-      <BuildType Solution="DebugOpt|*" Project="Debug" />
-      <BuildType Solution="Tools|*" Project="Debug" />
-    </Project>
     <Project Path="Modules/GoobStation/Content.Goobstation.Server/Content.Goobstation.Server.csproj">
       <BuildType Solution="DebugOpt|*" Project="Debug" />
       <BuildType Solution="Tools|*" Project="Debug" />

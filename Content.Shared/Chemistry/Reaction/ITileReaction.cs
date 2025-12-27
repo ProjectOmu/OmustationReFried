@@ -1,5 +1,5 @@
 using Content.Shared.Chemistry.Reagent;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Map;
 
 namespace Content.Shared.Chemistry.Reaction

@@ -1,6 +1,6 @@
 using Content.Shared.Codewords;
 using Content.Shared.Dataset;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
