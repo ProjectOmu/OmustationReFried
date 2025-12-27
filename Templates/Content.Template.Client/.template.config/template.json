@@ -1,0 +1,25 @@
+{
+    "author": "gus",
+    "name": "SS14 Client Module Template",
+    "description": "A template project for a client module.",
+    "identity": "gus.ClientModuleTemplate.1.0",
+    "shortName": "client",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "Content.Template.Client",
+    "symbols": {
+        "Framework": {
+            "type": "parameter",
+            "description": "The target framework for the project.",
+            "datatype": "choice",
+            "choices": [
+                {
+                    "choice": "net10.0"
+                }
+            ],
+            "defaultValue": "net10.0"
+        }
+    }
+}
