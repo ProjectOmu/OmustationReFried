@@ -16,4 +16,4 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - name: Check for CRLF
-      run: Tools/check_crlf.py
+      run: python Tools/check_crlf.py
