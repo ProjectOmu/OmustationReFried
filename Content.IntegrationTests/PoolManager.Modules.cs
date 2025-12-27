@@ -142,18 +142,21 @@ public static partial class PoolManager
     /// <param name="client">True to receive client assemblies, server otherwise.</param>
     /// <param name="includePoolAssembly">To include PoolManager's assembly. Required for itself, not so much for tests</param>
     /// <returns></returns>
-    public static Assembly[] GetAssemblies(bool client, bool includePoolAssembly = true)
+    public static Assembly[] GetAssemblies(bool client, bool includePoolAssembly = true, bool includeShared = true)
     {
-        // Start with the base assemblies based on client flag
-        var assemblies = new List<Assembly>(client ? Client.Concat(Shared) : Server.Concat(Shared));
+        var assemblies = new List<Assembly>(client ? Client : Server);
 
-        // Add pool assembly if needed
+        if (includeShared)
+            assemblies.AddRange(Shared);
         if (includePoolAssembly)
-        {
             assemblies.Add(CurrentAssembly);
-        }
 
         return assemblies.ToArray();
+    }
+
+    public static HashSet<Assembly> GetSharedAssemblies()
+    {
+        return Shared;
     }
 
     private static bool AlreadyLoaded(string dll)

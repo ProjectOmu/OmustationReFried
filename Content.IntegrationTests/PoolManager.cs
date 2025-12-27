@@ -102,21 +102,14 @@ public sealed class ContentPoolManager : PoolManager<TestPair>
 
         PoolManager.DiscoverModules();
 
-        var clientAssemblies = PoolManager.GetAssemblies(client: true, includePoolAssembly: false)
-            .Append(typeof(Client.Entry.EntryPoint).Assembly)
-            .ToArray();
-
-        var serverAssemblies = PoolManager.GetAssemblies(client: false, includePoolAssembly: false)
-            .Append(typeof(Server.Entry.EntryPoint).Assembly)
-            .ToArray();
-
-        var shared = extraAssemblies
-            .Append(typeof(Shared.Entry.EntryPoint).Assembly)
+        var clientAssemblies = PoolManager.GetAssemblies(client: true, includePoolAssembly: false, includeShared: false);
+        var serverAssemblies = PoolManager.GetAssemblies(client: false, includePoolAssembly: false, includeShared: false);
+        var sharedAssemblies = PoolManager.GetSharedAssemblies();
+        var shared = sharedAssemblies
+            .Concat(extraAssemblies)
             .Append(typeof(PoolManager).Assembly)
             .ToArray();
 
-        Startup(clientAssemblies,
-            serverAssemblies,
-            shared);
+        Startup(clientAssemblies, serverAssemblies, shared);
     }
 }
