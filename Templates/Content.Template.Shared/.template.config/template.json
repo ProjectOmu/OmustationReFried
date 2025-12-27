@@ -1,0 +1,25 @@
+{
+    "author": "gus",
+    "name": "SS14 Shared Module Template",
+    "description": "A template project for a Shared module.",
+    "identity": "gus.SharedModuleTemplate.1.0",
+    "shortName": "shared",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "Content.Template.Shared",
+    "symbols": {
+        "Framework": {
+            "type": "parameter",
+            "description": "The target framework for the project.",
+            "datatype": "choice",
+            "choices": [
+                {
+                    "choice": "net10.0"
+                }
+            ],
+            "defaultValue": "net10.0"
+        }
+    }
+}

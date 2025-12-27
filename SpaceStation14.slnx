@@ -13,7 +13,9 @@
   <Folder Name="/Build/">
     <File Path="Tools/generate_hashes.ps1" />
   </Folder>
-  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/">
+    <File Path="Modules/README.MD" />
+  </Folder>
   <Folder Name="/Modules/GoobStation/">
     <File Path="Modules/GoobStation/module.yml" />
     <Project Path="Modules/GoobStation/Content.Goobstation.Client/Content.Goobstation.Client.csproj">

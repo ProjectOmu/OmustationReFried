@@ -1,6 +1,4 @@
-﻿using Robust.Shared.IoC;
-
-namespace Content.Goobstation.Client.IoC;
+﻿namespace Content.Goobstation.Client.IoC;
 
 internal static class ClientGoobContentIoc
 {

@@ -1,6 +1,6 @@
 ﻿namespace Content.Goobstation.Shared.IoC;
 
-internal static class SharedGoobContentIoc
+internal static class SharedGoobContentIoC
 {
     internal static void Register()
     {
