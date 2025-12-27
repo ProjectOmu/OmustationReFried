@@ -1,5 +1,5 @@
 using System;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using NUnit.Framework;
 
 namespace Content.Tests.Shared.Chemistry

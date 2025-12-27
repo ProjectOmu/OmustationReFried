@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
-    <ProjectReference Include="..\Modules\GoobStation\Content.Goobstation.Maths\Content.Goobstation.Maths.csproj" />
   </ItemGroup>
 
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />

@@ -7,7 +7,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems;
