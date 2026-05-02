@@ -99,7 +99,8 @@ public static class ServerPackaging
         }
     }
 
-    private static async Task BuildPlatform(PlatformReg platform,
+    private static async Task BuildPlatform(
+        PlatformReg platform,
         bool skipBuild,
         bool hybridAcz,
         bool logBuild,
@@ -115,7 +116,7 @@ public static class ServerPackaging
             foreach (var module in serverModules)
             {
                 var projectName = Path.GetFileName(module);
-                await ProcessHelpers.RunCheck(new ProcessStartInfo
+                var startInfo = new ProcessStartInfo
                 {
                     FileName = "dotnet",
                     ArgumentList =
@@ -130,16 +131,16 @@ public static class ServerPackaging
                         "/p:FullRelease=true",
                         "/m",
                     },
-                });
-            }
+                };
 
-            if (logBuild)
-            {
-                startInfo.ArgumentList.Add($"/bl:{Path.Combine("release", $"server-{platform.Rid}.binlog")}");
-                startInfo.ArgumentList.Add("/p:ReportAnalyzer=true");
-            }
+                if (logBuild)
+                {
+                    startInfo.ArgumentList.Add($"/bl:{Path.Combine("release", $"server-{platform.Rid}.binlog")}");
+                    startInfo.ArgumentList.Add("/p:ReportAnalyzer=true");
+                }
 
-            await ProcessHelpers.RunCheck(startInfo);
+                await ProcessHelpers.RunCheck(startInfo);
+            }
 
             await PublishClientServer(platform.Rid, platform.TargetOs, configuration);
         }

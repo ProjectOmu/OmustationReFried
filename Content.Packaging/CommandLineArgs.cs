@@ -64,18 +64,32 @@ public sealed class CommandLineArgs
             {
                 switch (arg)
                 {
-                    case "client": client = true; break;
-                    case "server": client = false; break;
-                    default: return false;
+                    case "client":
+                        client = true;
+                        break;
+                    case "server":
+                        client = false;
+                        break;
+                    default:
+                        return false;
                 }
                 continue;
             }
 
             switch (arg)
             {
-                case "--skip-build": skipBuild = true; break;
-                case "--no-wipe-release": wipeRelease = false; break;
-                case "--hybrid-acz": hybridAcz = true; break;
+                case "--skip-build":
+                    skipBuild = true;
+                    break;
+                case "--no-wipe-release":
+                    wipeRelease = false;
+                    break;
+                case "--hybrid-acz":
+                    hybridAcz = true;
+                    break;
+                case "--log-build":
+                    logBuild = true;
+                    break;
                 case "--platform" when !enumerator.MoveNext():
                     Console.WriteLine("No platform provided");
                     return false;
@@ -86,14 +100,15 @@ public sealed class CommandLineArgs
                 case "--configuration" when !enumerator.MoveNext():
                     Console.WriteLine("No configuration provided");
                     return false;
-                case "--configuration": configuration = enumerator.Current; break;
+                case "--configuration":
+                    configuration = enumerator.Current;
+                    break;
                 case "--help":
                     PrintHelp();
                     return false;
-                case "--log-build":
-                    logBuild = true;
+                default:
+                    Console.WriteLine("Unknown argument: {0}", arg);
                     break;
-                default: Console.WriteLine("Unknown argument: {0}", arg); break;
             }
         }
 
