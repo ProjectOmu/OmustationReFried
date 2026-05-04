@@ -154,7 +154,7 @@ public static class ServerPackaging
             using var zip = new ZipArchive(zipFile, ZipArchiveMode.Update);
             var writer = new AssetPassZipWriter(zip);
 
-            await WriteServerResources(platform, "", writer, logger, hybridAcz, default);
+            await WriteServerResources(platform, "", writer, logger, hybridAcz, default, configuration);
             await writer.FinishedTask;
         }
 
@@ -176,7 +176,7 @@ public static class ServerPackaging
         return serverModules;
     }
 
-    private static List<string> FindAllServerModules(string path = ".")
+    private static List<string> FindAllServerModules(string path = ".", string configuration = "Debug")
     {
         if (string.IsNullOrEmpty(path))
             path = ".";
@@ -189,7 +189,7 @@ public static class ServerPackaging
         {
             modules.Add(mod.Name);
 
-            var moduleOutputDir = ModuleDiscovery.GetModuleOutputDir(mod.ProjectPath);
+            var moduleOutputDir = ModuleDiscovery.GetModuleOutputDir(mod.ProjectPath, configuration);
             var moduleDepsPath = Path.Combine(moduleOutputDir, $"{mod.Name}.deps.json");
 
             if (File.Exists(coreDepsPath) && File.Exists(moduleDepsPath))
@@ -226,7 +226,8 @@ public static class ServerPackaging
         AssetPass pass,
         IPackageLogger logger,
         bool hybridAcz,
-        CancellationToken cancel)
+        CancellationToken cancel,
+        string configuration)
     {
         var graph = new RobustServerAssetGraph();
         var passes = graph.AllPasses.ToList();
@@ -245,7 +246,7 @@ public static class ServerPackaging
         var inputPassCore = graph.InputCore;
         var inputPassResources = graph.InputResources;
 
-        var contentAssemblies = FindAllServerModules();
+        var contentAssemblies = FindAllServerModules(configuration: configuration);
 
         // Additional assemblies that need to be copied such as EFCore.
         var sourcePath = Path.Combine(contentDir, "bin", "Content.Server");
@@ -276,13 +277,8 @@ public static class ServerPackaging
             contentDir,
             "Content.Server",
             contentAssemblies,
-            cancel: cancel);
-
-        await RobustServerPackaging.WriteServerResources(
-            contentDir,
-            inputPassResources,
-            ServerContentIgnoresResources.Concat(SharedPackaging.AdditionalIgnoredResources).ToHashSet(),
-            cancel);
+            cancel,
+            configuration);
 
         await RobustServerPackaging.WriteServerResources(contentDir, inputPassResources, cancel);
 
@@ -299,7 +295,8 @@ public static class ServerPackaging
         AssetPass pass,
         string contentDir,
         IEnumerable<string> contentAssemblies,
-        CancellationToken cancel = default)
+        CancellationToken cancel = default,
+        string configuration = "Debug")
     {
         var mainBinDir = Path.Combine(contentDir, "bin", "Content.Server");
 
@@ -307,7 +304,7 @@ public static class ServerPackaging
             .Where(m => m.Type != ModuleRole.Client)
             .ToDictionary(
                 m => m.Name,
-                m => ModuleDiscovery.GetModuleOutputDir(m.ProjectPath)
+                m => ModuleDiscovery.GetModuleOutputDir(m.ProjectPath, configuration)
             );
 
         foreach (var asm in contentAssemblies)
