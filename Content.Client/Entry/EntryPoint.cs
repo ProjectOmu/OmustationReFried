@@ -1,4 +1,5 @@
 using Content.Client.Administration.Managers;
+using Content.ModuleManager;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.DebugMon;
@@ -36,6 +37,7 @@ using Robust.Client.UserInterface;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
@@ -88,6 +90,12 @@ namespace Content.Client.Entry
                 var cast = (ClientModuleTestingCallbacks) callback;
                 cast.ClientBeforeIoC?.Invoke();
             }
+
+#if !FULL_RELEASE
+            ModuleResourceMounter.MountAll(
+                Dependencies.Resolve<IResourceManager>(),
+                Dependencies.Resolve<ILogManager>().GetSawmill("modules"));
+#endif
         }
 
         public override void Init()
