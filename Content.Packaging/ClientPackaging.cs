@@ -25,7 +25,7 @@ public static class ClientPackaging
 
             foreach (var project in clientProjects)
             {
-                await ProcessHelpers.RunCheck(new ProcessStartInfo
+                var startInfo = new ProcessStartInfo
                 {
                     FileName = "dotnet",
                     ArgumentList =
@@ -38,16 +38,14 @@ public static class ClientPackaging
                         "/p:FullRelease=true",
                         "/m",
                     },
-                });
+                };
+                if (logBuild)
+                {
+                    startInfo.ArgumentList.Add($"/bl:{Path.Combine("release", "client.binlog")}");
+                    startInfo.ArgumentList.Add("/p:ReportAnalyzer=true");
+                }
+                await ProcessHelpers.RunCheck(startInfo);
             }
-
-            if (logBuild)
-            {
-                startInfo.ArgumentList.Add($"/bl:{Path.Combine("release", "client.binlog")}");
-                startInfo.ArgumentList.Add("/p:ReportAnalyzer=true");
-            }
-
-            await ProcessHelpers.RunCheck(startInfo);
         }
 
         logger.Info("Packaging client...");

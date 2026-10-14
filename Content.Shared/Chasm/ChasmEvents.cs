@@ -1,4 +1,4 @@
-﻿using Content.Shared.Chasm.Components;
+﻿using Content.Shared.Chasm;
 
 namespace Content.Shared.Chasm;
 

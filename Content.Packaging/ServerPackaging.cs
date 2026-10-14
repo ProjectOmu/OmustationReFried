@@ -283,7 +283,6 @@ public static class ServerPackaging
         await WriteServerContentAssemblies(
             inputPassResources,
             contentDir,
-            "Content.Server",
             contentAssemblies,
             cancel,
             configuration);
