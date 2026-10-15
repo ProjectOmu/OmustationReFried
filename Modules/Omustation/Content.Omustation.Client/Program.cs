@@ -1,6 +1,6 @@
 ﻿using Robust.Client;
 
-namespace Content.Goobstation.Client;
+namespace Content.Omustation.Client;
 
 internal sealed class Program
 {

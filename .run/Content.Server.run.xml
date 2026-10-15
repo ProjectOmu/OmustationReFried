@@ -17,7 +17,7 @@
     <option name="PROJECT_KIND" value="DotNetCore" />
     <option name="PROJECT_TFM" value="net10.0" />
     <method v="2">
-      <option name="Build" default="false" projectName="Content.Goobstation.Server" projectPath="$PROJECT_DIR$/Modules/GoobStation/Content.Goobstation.Server/Content.Goobstation.Server.csproj" />
+      <option name="Build" default="false" projectName="Content.Omustation.Server" projectPath="$PROJECT_DIR$/Modules/Omustation/Content.Omustation.Server/Content.Omustation.Server.csproj" />
       <option name="Build" default="false" projectName="Content.Lavaland.Server" projectPath="$PROJECT_DIR$/Modules/Lavaland/Content.Lavaland.Server/Content.Lavaland.Server.csproj" />
       <option name="Build" />
     </method>

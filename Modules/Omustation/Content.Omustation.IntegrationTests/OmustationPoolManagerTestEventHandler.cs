@@ -1,10 +1,10 @@
 using Content.Benchmarks;
 using Content.IntegrationTests;
 
-namespace Content.Goobstation.IntegrationTests;
+namespace Content.Omustation.IntegrationTests;
 
 [SetUpFixture]
-public sealed class GoobstationPoolManagerTestEventHandler
+public sealed class OmustationPoolManagerTestEventHandler
 {
     [OneTimeSetUp]
     public void Setup()
