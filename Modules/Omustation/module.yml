@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 Space Station 14 Contributors
+#
+# SPDX-License-Identifier: MIT-WIZARDS
+
+name: Omustation
+id: omustation
+version: 1.0.0
+
+resources:
+  - Resources
+
+projects:
+  - path: Content.Omustation.Common
+    role: Common
+
+  - path: Content.Omustation.Shared
+    role: Shared
+
+  - path: Content.Omustation.Server
+    role: Server
+
+  - path: Content.Omustation.Client
+    role: Client

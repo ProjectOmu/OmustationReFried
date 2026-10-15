@@ -1,6 +1,6 @@
 ﻿using Robust.Server;
 
-namespace Content.Goobstation.Server;
+namespace Content.Omustation.Server;
 
 internal static class Program
 {

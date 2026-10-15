@@ -14,14 +14,17 @@
   <Folder Name="/Modules/">
     <File Path="Modules/README.MD" />
   </Folder>
-  <Folder Name="/Modules/GoobStation/">
-    <Project Path="Modules/GoobStation/Content.Goobstation.Client/Content.Goobstation.Client.csproj" />
-    <Project Path="Modules/GoobStation/Content.Goobstation.Client.UIKit/Content.Goobstation.Client.UIKit.csproj" />
-    <Project Path="Modules/GoobStation/Content.Goobstation.Common/Content.Goobstation.Common.csproj" />
-    <Project Path="Modules/GoobStation/Content.Goobstation.Server/Content.Goobstation.Server.csproj" />
-    <Project Path="Modules/GoobStation/Content.Goobstation.Shared/Content.Goobstation.Shared.csproj" />
-    <Project Path="Modules/GoobStation/Content.Goobstation.IntegrationTests/Content.Goobstation.IntegrationTests.csproj" />
-    <File Path="Modules/GoobStation/module.yml" />
+  <Folder Name="/Modules/Omustation/">
+    <Project Path="Modules/Omustation/Content.Omustation.Client/Content.Omustation.Client.csproj" />
+    <Project Path="Modules/Omustation/Content.Omustation.Common/Content.Omustation.Common.csproj" />
+    <Project Path="Modules/Omustation/Content.Omustation.Server/Content.Omustation.Server.csproj" />
+    <Project Path="Modules/Omustation/Content.Omustation.Shared/Content.Omustation.Shared.csproj" />
+    <Project Path="Modules/Omustation/Content.Omustation.IntegrationTests/Content.Omustation.IntegrationTests.csproj" />
+    <File Path="Modules/Omustation/module.yml" />
+  </Folder>
+  <Folder Name="/Modules/Goobstation/">
+    <Project Path="Modules/Goobstation/Content.Goobstation.Client.UIKit/Content.Goobstation.Client.UIKit.csproj" />
+    <File Path="Modules/Goobstation/module.yml" />
   </Folder>
   <Folder Name="/Modules/Lavaland/">
     <Project Path="Modules/Lavaland/Content.Lavaland.Client/Content.Lavaland.Client.csproj" />

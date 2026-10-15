@@ -1,6 +1,6 @@
-﻿namespace Content.Goobstation.Common.IoC;
+﻿namespace Content.Omustation.Common.IoC;
 
-internal static class CommonGoobContentIoC
+internal static class CommonOmuContentIoC
 {
     internal static void Register()
     {
