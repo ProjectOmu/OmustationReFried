@@ -1,6 +1,6 @@
-﻿namespace Content.Omustation.Common.IoC;
+﻿namespace Content.Common.IoC;
 
-internal static class CommonOmuContentIoC
+internal static class CommonContentIoC
 {
     internal static void Register()
     {

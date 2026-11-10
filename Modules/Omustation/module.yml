@@ -6,8 +6,6 @@ resources:
   - Resources
 
 projects:
-  - path: Content.Omustation.Common
-    role: Common
 
   - path: Content.Omustation.Shared
     role: Shared

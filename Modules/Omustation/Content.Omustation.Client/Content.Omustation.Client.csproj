@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Content.Client\Content.Client.csproj" />
-    <ProjectReference Include="..\Content.Omustation.Common\Content.Omustation.Common.csproj" />
+    <ProjectReference Include="..\..\..\Content.Common\Content.Common.csproj" />
     <ProjectReference Include="..\Content.Omustation.Shared\Content.Omustation.Shared.csproj" />
   </ItemGroup>
 

@@ -2,6 +2,36 @@
 
 The module system allows you to organize custom content into self-contained modules with a manifest-based configuration system.
 
+You can find info about how certain specifc modules like `Content.Common` are set up by reading the readme.md in them.
+
+# Current Module structure
+(keep updated ig)
+
+```
+                         Robust.Shared (etc) ━━━━━━> (Robust deps)
+                               ┃
+                               ┃
+                               ┃
+                         Content.Common
+                               ┃
+                               ┃
+                               ┃
+                         Content.Shared ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+                               ┃                                         ┃             ┃
+ Content.Goobstation.<━━━━━━━━━┫                                         ┃             ┃
+ Client.UIkit                  ┃                   ┏━━━━━━━━━━━━━━━Content.Client <━━━━╂━━ (Robust deps)
+                               ┃                   ┃                                   ┃
+                    Content.Omustation.Shared      ┃                                   ┃
+                               ┃                   ┃                                   ┃
+                               ┃                   ┃                                   ┃
+                 ┏━━━━━━━━━━━━━┻━━━━━━━━━━━━━┓     ┃                   ┏━━━━━━━━━━━━━━━┻
+                 ┃                Content.Omustation.Client            ┃
+                 ┃                                                     ┃
+                 ┃  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━Content.Server <━━━━━━━ (Robust deps)
+                 ┃  ┃
+     Content.Omustation.Server
+```
+
 ## Directory Structure
 
 All modules should be placed in the `Modules/` directory:
@@ -97,6 +127,7 @@ mkdir -p Modules/YourModule/Content.YourModule.Shared
 </Project>
 ```
 
+[](todo omu)
 Writing TODO:
 
 - [ ] Step 5: Add to SLN (`find . -name "*.csproj" ! -path "./RobustToolbox/*" -exec dotnet sln add {} \;`)

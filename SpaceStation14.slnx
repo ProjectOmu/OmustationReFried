@@ -16,7 +16,6 @@
   </Folder>
   <Folder Name="/Modules/Omustation/">
     <Project Path="Modules/Omustation/Content.Omustation.Client/Content.Omustation.Client.csproj" />
-    <Project Path="Modules/Omustation/Content.Omustation.Common/Content.Omustation.Common.csproj" />
     <Project Path="Modules/Omustation/Content.Omustation.Server/Content.Omustation.Server.csproj" />
     <Project Path="Modules/Omustation/Content.Omustation.Shared/Content.Omustation.Shared.csproj" />
     <Project Path="Modules/Omustation/Content.Omustation.IntegrationTests/Content.Omustation.IntegrationTests.csproj" />
