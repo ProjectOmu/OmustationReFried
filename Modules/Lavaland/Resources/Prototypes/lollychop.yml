@@ -32,7 +32,7 @@
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Melee/lollychop.rsi
+    sprite: _Omustation/Objects/Weapons/Melee/lollychop.rsi
     quickEquip: false
     slots:
     - back

@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Modules\**\Content.*.Shared\Content.*.Shared.csproj" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\Modules\**\Content.*.Client.UIKit\Content.*.Client.UIKit.csproj" />
   </ItemGroup>
 
   <Import Project="..\MSBuild\BuildCopyClientModules.targets" />

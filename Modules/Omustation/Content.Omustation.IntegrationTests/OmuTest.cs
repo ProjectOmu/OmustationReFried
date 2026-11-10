@@ -1,9 +1,9 @@
 ﻿using Content.IntegrationTests.Fixtures;
 
-namespace Content.Goobstation.IntegrationTests;
+namespace Content.Omustation.IntegrationTests;
 
 [TestFixture]
-public sealed partial class GoobTest : GameTest
+public sealed partial class OmuTest : GameTest
 {
     [Test]
     public async Task TestLoadAll()

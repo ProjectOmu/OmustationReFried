@@ -1,7 +1,0 @@
-name: GoobStation
-id: goobstation
-version: 1.0.0
-
-projects:
-  - path: Content.Goobstation.Client.UIKit
-    role: Client
