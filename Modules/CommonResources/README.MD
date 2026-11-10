@@ -20,7 +20,7 @@ Resomi are a relatively popular species, originally PR'd in `Wizden` but not imp
 Historically, `Floofstation` Adopted this species, which `Goobstation` ported,
 however other forks like `Starlight` Implemented their own version from `Wizden`.
 
-This lead to effectively two different directories for the same species.
+This led to effectively two different directories for the same species.
 Which makes porting content unwieldy and makes it unclear
 as to what content originated from where either way
 
