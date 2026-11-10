@@ -1,0 +1,6 @@
+name: CommonResources
+id: common_resources
+version: 1.0.0
+
+resources:
+  - Resources
