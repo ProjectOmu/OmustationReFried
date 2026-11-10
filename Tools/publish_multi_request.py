@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-import argparse
 import requests
 import os
 import subprocess
 from typing import Iterable
 
-DRY_RUN = os.environ.get("DRY_RUN", "").lower() in ("1", "true", "yes")
+PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
 VERSION = os.environ["GITHUB_SHA"]
 
 RELEASE_DIR = "release"
@@ -15,41 +14,15 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://wizards.cdn.spacestation14.com/"
-FORK_ID = "wizards"
-
-def get_publish_token() -> str:
-    try:
-        return os.environ["PUBLISH_TOKEN"]
-    except KeyError:
-        raise RuntimeError("PUBLISH_TOKEN is not set")
-
-
-def simulate_publish(fork_id: str, version: str) -> None:
-    print(f"[DRY RUN] Would publish version {version} to Robust.CDN fork '{fork_id}'")
-    print(f"[DRY RUN]   engine version: {get_engine_version()}")
-    files = list(get_files_to_publish())
-    print(f"[DRY RUN]   files to upload ({len(files)}):")
-    for file in files:
-        print(f"[DRY RUN]     - {file}")
-    print("[DRY RUN] Skipping all network calls to Robust.CDN.")
-
+# todo omu look over dry-run publish
+#
+ROBUST_CDN_URL = "https://cdn.projectomu.org/"
+FORK_ID = "ReFried"
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--fork-id", default=FORK_ID)
-
-    args = parser.parse_args()
-    fork_id = args.fork_id
-
-
-    if DRY_RUN:
-        simulate_publish(fork_id, VERSION)
-        return
-
     session = requests.Session()
     session.headers = {
-        "Authorization": f"Bearer {get_publish_token()}",
+        "Authorization": f"Bearer {PUBLISH_TOKEN}",
     }
 
     print(f"Starting publish on Robust.Cdn for version {VERSION}")
@@ -61,7 +34,7 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/start", json=data, headers=headers)
+    resp = session.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish/start", json=data, headers=headers)
     resp.raise_for_status()
     print("Publish successfully started, adding files...")
 
@@ -73,7 +46,7 @@ def main():
                 "Robust-Cdn-Publish-File": os.path.basename(file),
                 "Robust-Cdn-Publish-Version": VERSION
             }
-            resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/file", data=f, headers=headers)
+            resp = session.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish/file", data=f, headers=headers)
 
         resp.raise_for_status()
 
@@ -85,7 +58,7 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/finish", json=data, headers=headers)
+    resp = session.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish/finish", json=data, headers=headers)
     resp.raise_for_status()
 
     print("SUCCESS!")
