@@ -22,9 +22,9 @@
     <Project Path="Modules/Omustation/Content.Omustation.IntegrationTests/Content.Omustation.IntegrationTests.csproj" />
     <File Path="Modules/Omustation/module.yml" />
   </Folder>
-  <Folder Name="/Modules/Goobstation/">
-    <Project Path="Modules/Goobstation/Content.Goobstation.Client.UIKit/Content.Goobstation.Client.UIKit.csproj" />
-    <File Path="Modules/Goobstation/module.yml" />
+  <Folder Name="/Modules/GoobStation/">
+    <Project Path="Modules/GoobStation/Content.Goobstation.Client.UIKit/Content.Goobstation.Client.UIKit.csproj" />
+    <File Path="Modules/GoobStation/module.yml" />
   </Folder>
   <Folder Name="/Modules/Lavaland/">
     <Project Path="Modules/Lavaland/Content.Lavaland.Client/Content.Lavaland.Client.csproj" />
@@ -105,9 +105,6 @@
     <File Path="RobustToolbox/MSBuild/Robust.Properties.targets" />
     <File Path="RobustToolbox/MSBuild/Robust.Trimming.targets" />
     <File Path="RobustToolbox/MSBuild/XamlIL.targets" />
-  </Folder>
-  <Folder Name="/RobustToolbox/NetSerializer/">
-    <Project Path="RobustToolbox/NetSerializer/NetSerializer/NetSerializer.csproj" />
   </Folder>
   <Folder Name="/RobustToolbox/Project Files/">
     <File Path="RobustToolbox/Directory.Build.props" />
