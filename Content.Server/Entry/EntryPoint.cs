@@ -1,4 +1,6 @@
-using System.Threading.Tasks;
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using Content.ModuleManager;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -31,7 +33,6 @@ using Robust.Server;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -91,12 +92,13 @@ namespace Content.Server.Entry
             }
 
             Dependencies.Resolve<IRobustSerializer>().FloatFlags = SerializerFloatFlags.RemoveReadNan;
-
+    // Goob GAG start
 #if !FULL_RELEASE
             ModuleResourceMounter.MountAll(
                 Dependencies.Resolve<IResourceManager>(),
                 Dependencies.Resolve<ILogManager>().GetSawmill("modules"));
 #endif
+    // Goob GAG end
         }
 
         /// <inheritdoc />

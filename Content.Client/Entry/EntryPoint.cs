@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using Content.Client.Administration.Managers;
 using Content.ModuleManager;
 using Content.Client.Changelog;
@@ -90,12 +93,13 @@ namespace Content.Client.Entry
                 var cast = (ClientModuleTestingCallbacks) callback;
                 cast.ClientBeforeIoC?.Invoke();
             }
-
+// Goob GAG start
 #if !FULL_RELEASE
             ModuleResourceMounter.MountAll(
                 Dependencies.Resolve<IResourceManager>(),
                 Dependencies.Resolve<ILogManager>().GetSawmill("modules"));
 #endif
+// Goob GAG end
         }
 
         public override void Init()

@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using System.Diagnostics;
 using System.IO.Compression;
 using Content.ModuleManager;
@@ -100,8 +103,7 @@ public static class ServerPackaging
         }
     }
 
-    private static async Task BuildPlatform(
-        PlatformReg platform,
+    private static async Task BuildPlatform(PlatformReg platform,
         bool skipBuild,
         bool hybridAcz,
         bool logBuild,
@@ -112,18 +114,19 @@ public static class ServerPackaging
 
         if (!skipBuild)
         {
+            // Goob GAG start
             var serverModules = FindServerModules();
 
             foreach (var module in serverModules)
             {
                 var projectName = Path.GetFileName(module);
-                var startInfo = new ProcessStartInfo
+                var startInfo = new ProcessStartInfo // Goob GAG end
                 {
                     FileName = "dotnet",
                     ArgumentList =
                     {
                         "build",
-                        Path.Combine(module, $"{projectName}.csproj"),
+                        Path.Combine(module, $"{projectName}.csproj"), // Goob GAG
                         "-c", configuration,
                         "--nologo",
                         "/v:m",
@@ -154,13 +157,14 @@ public static class ServerPackaging
             using var zip = new ZipArchive(zipFile, ZipArchiveMode.Update);
             var writer = new AssetPassZipWriter(zip);
 
-            await WriteServerResources(platform, "", writer, logger, hybridAcz, default, configuration);
+            await WriteServerResources(platform, "", writer, logger, hybridAcz, default, configuration); // Goob GAG
             await writer.FinishedTask;
         }
 
         logger.Info($"Finished packaging server in {sw.Elapsed}");
     }
 
+    // Goob GAG start
     private static List<string> FindServerModules(string path = ".")
     {
         var serverModules = new List<string> { "Content.Server" };
@@ -176,7 +180,8 @@ public static class ServerPackaging
         return serverModules;
     }
 
-    private static List<string> FindAllServerModules(string path = ".", string configuration = "Debug")
+    private static List<string> FindAllServerModules(string path = ".",
+        string configuration = "Debug") // Goob GAG
     {
         if (string.IsNullOrEmpty(path))
             path = ".";
@@ -200,6 +205,7 @@ public static class ServerPackaging
 
         return modules.Distinct().ToList();
     }
+    // Goob GAG end
 
     private static async Task PublishClientServer(string runtime, string targetOs, string configuration)
     {
@@ -226,8 +232,8 @@ public static class ServerPackaging
         AssetPass pass,
         IPackageLogger logger,
         bool hybridAcz,
-        CancellationToken cancel,
-        string configuration)
+        CancellationToken cancel, // Goob GAG
+        string configuration) // Goob GAG
     {
         var graph = new RobustServerAssetGraph();
         var passes = graph.AllPasses.ToList();
@@ -241,6 +247,7 @@ public static class ServerPackaging
 
         passes.Add(pass);
 
+        // Goob GAG Start
         // Front the resources side of the graph with a global "last write wins" dedup pass.
         // Loaders feed dedup; dedup re-emits unique paths into InputResources. This lets
         // modules override main-content resource files without later passes choking on
@@ -248,13 +255,14 @@ public static class ServerPackaging
         var dedupPass = new AssetPassLastWriteWins { Name = "ContentLastWriteWinsResources" };
         graph.InputResources.AddDependency(dedupPass);
         passes.Add(dedupPass);
+        // Goob GAG end
 
         AssetGraph.CalculateGraph(passes, logger);
 
         var inputPassCore = graph.InputCore;
-        var inputPassResources = dedupPass;
+        var inputPassResources = dedupPass; // Goob GAG
 
-        var contentAssemblies = FindAllServerModules(configuration: configuration);
+        var contentAssemblies = FindAllServerModules(configuration: configuration); // Goob GAG
 
         // Additional assemblies that need to be copied such as EFCore.
         var sourcePath = Path.Combine(contentDir, "bin", "Content.Server");
@@ -284,11 +292,11 @@ public static class ServerPackaging
             inputPassResources,
             contentDir,
             contentAssemblies,
-            cancel,
-            configuration);
+            cancel, // Goob GAG
+            configuration); // Goob GAG
 
-        await RobustServerPackaging.WriteServerResources(contentDir, inputPassResources, cancel);
-        await DoModularResourceCopy(contentDir, inputPassResources, cancel);
+        await RobustServerPackaging.WriteServerResources(contentDir, inputPassResources, cancel); // Goob GAG
+        await DoModularResourceCopy(contentDir, inputPassResources, cancel); // Goob GAG
 
         if (hybridAcz)
         {
@@ -299,6 +307,8 @@ public static class ServerPackaging
         inputPassResources.InjectFinished();
     }
 
+
+    // Goob GAG start
     private static async Task DoModularResourceCopy(
         string contentDir,
         AssetPass pass,
@@ -310,6 +320,7 @@ public static class ServerPackaging
             await RobustSharedPackaging.DoResourceCopy(resourcePath, pass, ignore, "", cancel);
         }
     }
+
 
     private static Task WriteServerContentAssemblies(
         AssetPass pass,
@@ -344,6 +355,7 @@ public static class ServerPackaging
 
         return Task.CompletedTask;
     }
+    // Goob GAG end
 
     private readonly record struct PlatformReg(string Rid, string TargetOs, bool BuildByDefault);
 }

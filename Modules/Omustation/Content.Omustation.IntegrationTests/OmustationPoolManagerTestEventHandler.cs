@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using Content.Benchmarks;
 using Content.IntegrationTests;
 

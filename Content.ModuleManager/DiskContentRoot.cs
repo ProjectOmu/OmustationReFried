@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;

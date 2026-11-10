@@ -1,4 +1,7 @@
-﻿using Content.ModuleManager;
+﻿// Notice, File contains code not licensed under MIT.
+// see licenses.
+
+using Content.ModuleManager;
 
 namespace Content.Packaging;
 

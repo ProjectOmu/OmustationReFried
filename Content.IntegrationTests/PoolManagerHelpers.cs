@@ -1,4 +1,7 @@
-﻿namespace Content.IntegrationTests;
+﻿// Notice, File contains code not licensed under MIT.
+// see licenses.
+
+namespace Content.IntegrationTests;
 
 public static class PoolManagerHelpers
 {

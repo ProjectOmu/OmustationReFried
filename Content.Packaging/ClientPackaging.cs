@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using System.Diagnostics;
 using System.IO.Compression;
 using Content.ModuleManager;
@@ -15,23 +18,26 @@ public static class ClientPackaging
     /// Be advised this can be called from server packaging during a HybridACZ build.
     /// Be also advised this goes against god and nature
     /// </summary>
-    public static async Task PackageClient(bool skipBuild, bool logBuild, string configuration, IPackageLogger logger, string path = ".")
+    public static async Task PackageClient(bool skipBuild, bool logBuild, string configuration, IPackageLogger logger,
+        string path = ".") // Goob GAG
     {
         logger.Info("Building client...");
 
         if (!skipBuild)
         {
+                    // Goob GAG start
             var clientProjects = GetClientModules(path);
 
             foreach (var project in clientProjects)
             {
                 var startInfo = new ProcessStartInfo
+                    // Goob Gag End
                 {
                     FileName = "dotnet",
                     ArgumentList =
                     {
                         "build",
-                        project,
+                        project, // Goob GAG
                         "-c", configuration,
                         "--nologo",
                         "/v:m",
@@ -54,16 +60,17 @@ public static class ClientPackaging
         {
             await using var zipFile =
                 File.Open(Path.Combine("release", "SS14.Client.zip"), FileMode.Create, FileAccess.ReadWrite);
-            await using var zip = new ZipArchive(zipFile, ZipArchiveMode.Update);
+            await using var zip = new ZipArchive(zipFile, ZipArchiveMode.Update); // Goob GAG
             var writer = new AssetPassZipWriter(zip);
 
-            await WriteResources("", configuration, writer, logger, default);
+            await WriteResources("", configuration, writer, logger, default); // Goob GAG
             await writer.FinishedTask;
         }
 
         logger.Info($"Finished packaging client in {sw.Elapsed}");
     }
 
+    // Goob GAG start
     private static List<string> GetClientModules(string path)
     {
         var clientProjects = new List<string> { Path.Combine("Content.Client", "Content.Client.csproj") };
@@ -102,10 +109,11 @@ public static class ClientPackaging
 
         return modules.Distinct().ToList();
     }
+    // Goob GAG End
 
     public static async Task WriteResources(
         string contentDir,
-        string configuration,
+        string configuration, // Goob GAG
         AssetPass pass,
         IPackageLogger logger,
         CancellationToken cancel)
@@ -113,8 +121,8 @@ public static class ClientPackaging
         var graph = new RobustClientAssetGraph();
         pass.Dependencies.Add(new AssetPassDependency(graph.Output.Name));
 
-        var dedupPass = new AssetPassLastWriteWins { Name = "ContentLastWriteWins" };
-        graph.Input.AddDependency(dedupPass);
+        var dedupPass = new AssetPassLastWriteWins { Name = "ContentLastWriteWins" }; // Goob GAG
+        graph.Input.AddDependency(dedupPass); // Goob GAG
 
         var dropSvgPass = new AssetPassFilterDrop(f => f.Path.EndsWith(".svg"))
         {
@@ -122,6 +130,7 @@ public static class ClientPackaging
         };
         dropSvgPass.AddDependency(graph.Input).AddBefore(graph.PresetPasses);
 
+        // Goob GAG start
         AssetGraph.CalculateGraph([pass, dedupPass, dropSvgPass, ..graph.AllPasses], logger);
 
         var inputPass = dedupPass;
@@ -136,10 +145,11 @@ public static class ClientPackaging
             configuration);
 
         await WriteClientResources(contentDir, inputPass, SharedPackaging.AdditionalIgnoredResources, cancel);
-
+        // Goob GAG end
         inputPass.InjectFinished();
     }
 
+    // Goob GAG start
     private static async Task WriteClientResources(
         string contentDir,
         AssetPass pass,
@@ -208,4 +218,5 @@ public static class ClientPackaging
 
         return Task.CompletedTask;
     }
+    // Goob GAG end
 }

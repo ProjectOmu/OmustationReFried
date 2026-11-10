@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 #nullable enable
 using System.Linq;
 using System.Reflection;
@@ -100,6 +103,7 @@ public sealed class ContentPoolManager : PoolManager<TestPair>
     {
         DefaultCvars.AddRange(PoolManager.TestCvars);
 
+        // Goob GAG start
         PoolManager.DiscoverModules();
 
         var clientAssemblies = PoolManager.GetAssemblies(client: true, includePoolAssembly: false, includeShared: false);
@@ -111,5 +115,6 @@ public sealed class ContentPoolManager : PoolManager<TestPair>
             .ToArray();
 
         Startup(clientAssemblies, serverAssemblies, shared);
+        // Goob GAG End
     }
 }

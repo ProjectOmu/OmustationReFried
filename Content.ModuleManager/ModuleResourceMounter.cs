@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using Robust.Shared.ContentPack;
 using Robust.Shared.Log;
 using Robust.Shared.Utility;

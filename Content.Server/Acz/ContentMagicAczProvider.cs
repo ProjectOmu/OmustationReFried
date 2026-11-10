@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Packaging;
@@ -20,6 +23,6 @@ public sealed class ContentMagicAczProvider : IMagicAczProvider
     {
         var contentDir = DefaultMagicAczProvider.FindContentRootPath(_deps);
 
-        await ClientPackaging.WriteResources(contentDir, "Release", pass, logger, cancel);
+        await ClientPackaging.WriteResources(contentDir, "Release", pass, logger, cancel); // Goob GAG
     }
 }

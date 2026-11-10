@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using System.Collections.Concurrent;
 using Robust.Packaging.AssetProcessing;
 

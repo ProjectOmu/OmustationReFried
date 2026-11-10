@@ -1,4 +1,7 @@
-﻿namespace Content.ModuleManager;
+﻿// Notice, File contains code not licensed under MIT.
+// see licenses.
+
+namespace Content.ModuleManager;
 
 public sealed class ModuleManifest
 {

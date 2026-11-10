@@ -1,3 +1,6 @@
+// Notice, File contains code not licensed under MIT.
+// see licenses.
+
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -57,6 +60,7 @@ public sealed class DepsHandler
         }
     }
 
+    // Goob GAG start
     public static HashSet<string> GetModuleUniqueAssemblies(string coreDepsPath, string moduleDepsPath)
     {
         var core = Load(coreDepsPath);
@@ -80,6 +84,7 @@ public sealed class DepsHandler
             .Where(lib => module.Libraries.ContainsKey(lib))
             .SelectMany(lib => module.Libraries[lib].GetDllNames());
     }
+    // Goob GAG end
 
     public sealed class DepsData
     {

@@ -1,4 +1,7 @@
-﻿using Robust.Shared;
+﻿// Notice, File contains code not licensed under MIT.
+// see licenses.
+
+using Robust.Shared;
 
 namespace Content.Benchmarks;
 

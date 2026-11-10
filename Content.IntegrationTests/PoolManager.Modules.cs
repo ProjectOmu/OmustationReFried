@@ -1,4 +1,7 @@
-﻿#nullable enable
+﻿// Notice, File contains code not licensed under MIT.
+// see licenses.
+
+#nullable enable
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
