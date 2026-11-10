@@ -1,7 +1,7 @@
 # Dependency info
 
-`Core` = `Content.Shared, Content.Server, Content.Client`
-`Modules` = `Content.<modulename>.Shared, Content.<modulename>.Server, Content.<modulename>.Client, (...)`
+`Core` = `Content.Shared, Content.Server, Content.Client` <br>
+`Modules` = `Content.<modulename>.Shared, Content.<modulename>.Server, Content.<modulename>.Client, (...)` <br>
 
 Shared modules depend on `Content.Shared`, and like it, `Server` and `Client` modules will depend on it.
 

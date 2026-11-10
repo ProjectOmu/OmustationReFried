@@ -41,14 +41,6 @@
   categories: [HideSpawnMenu]
   components:
     - type: Slippery
-    - type: Projectile
-      impactEffect: BulletImpactEffectDisabler
-      damage:
-        types:
-          Ion: 0 # only slip
-      soundHit:
-        collection: WeakHit
-      forceSound: true
     - type: Sprite
       sprite: _TempCommon/Objects/Weapons/Guns/Projectiles/dislippler_laser.rsi
       layers:

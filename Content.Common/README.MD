@@ -16,14 +16,15 @@ Since it is independent of each, we can reach it from any system.
                      Content.Module.Shared
 ```
 
-## Communicating through commmon
+## Communicating through common
 
 However, there are tradeoffs for having a module that `Content.Shared` depends on.
 `Common` cannot use anything defined in `Content.Shared`.
 
 It is best to leave any added content to custom modules, but occasionally there is an unavoidable need to reach module code from `core`.
 
-[](todo rewrite I don't know how to phrase this other than calling it boilerplate)
+[ ] todo omu rewrite I don't know how to phrase this other than calling it boilerplate
+
 Thus, typically it is best to write merely basic boilerplate communicator code in the `Common` module and leave the hard work for inheriting systems.
 
 For example, we can define an abstract entity system in `Content.Common`
@@ -169,7 +170,6 @@ public sealed partial class SomeModuleEntitySys : EntitySystem
 
 }
 ```
-
 and in shared...
 
 
@@ -218,7 +218,9 @@ Notice that here `Core` is entirely unaware of what systems or components we may
 Note, you may find using `Common` obtuse when you want to pass some more complex or really specific datatypes.
 In these scenarios, currently there are no good ways around it, but it is recommended to create a simple abstract system in `Core` that we can override in our module
 
-[](todo this isn't great and at this point you could just run the actual system in shared but i think keeping most code in the modules is better separation)
+[ ] todo omu this isn't great and at this point you could just run the actual system in shared but i think keeping most code in the modules is better separation
+>> There is a legit argument to be made that we can just move a lot of stuff from Content.Shared to Content.Common but i really do not vibe with that for upstreaming reasons
+
 ```
 namespace Content.Shared.Specific
 
@@ -226,6 +228,6 @@ public sealed abstract class CommonSpecificSystem : EntitySystem
 {
     public abstract void RunModuleCode(EntityUid uid);
 }
-``
+```
 
 

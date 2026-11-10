@@ -18,8 +18,8 @@ You can find info about how certain specifc modules like `Content.Common` are se
                                ┃
                          Content.Shared ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
                                ┃                                         ┃             ┃
- Content.Goobstation.<━━━━━━━━━┫                                         ┃             ┃
- Client.UIkit                  ┃                   ┏━━━━━━━━━━━━━━━Content.Client <━━━━╂━━ (Robust deps)
+                               ┃                                         ┃             ┃
+                               ┃                   ┏━━━━━━━━━━━━━━━Content.Client <━━━━╂━━ (Robust deps)
                                ┃                   ┃                                   ┃
                     Content.Omustation.Shared      ┃                                   ┃
                                ┃                   ┃                                   ┃
@@ -127,7 +127,9 @@ mkdir -p Modules/YourModule/Content.YourModule.Shared
 </Project>
 ```
 
-[](todo omu)
+- [ ] todo omu
+<br>
+
 Writing TODO:
 
 - [ ] Step 5: Add to SLN (`find . -name "*.csproj" ! -path "./RobustToolbox/*" -exec dotnet sln add {} \;`)

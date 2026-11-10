@@ -1,4 +1,4 @@
-# todo omu rewrite this shit its too specific and unclear
+- [ ]todo omu rewrite this shit its too specific and unclear
 # Common Resources
 
 Common Resources are resources that are widely shared among forks and
@@ -41,7 +41,7 @@ unless its functionality specifically made to be shared among them.
 
 ### Origin marking:
 
-Reforged is a project about remaking the `Goobstation` Codebase.
+Refried is a project about remaking the `Omustation` Codebase.
 During It's development numerous resources and features have been modified in such an extensive manner,
 barely anything remains from their original port or otherwise implementation.
 
@@ -54,7 +54,7 @@ listing modifications made by any other forks to this content.
 
 ```
 # The following content originally ported from:
-# - Goobstation
+# - Omustation
 
 # With current Modifying changes from:
 # - <ForkName>

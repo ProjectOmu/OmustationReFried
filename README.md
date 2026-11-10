@@ -7,12 +7,8 @@ Omu Station strives to be a fork focused on more roleplay-centric gameplay while
 If you want to host or create content for SS14, go to the [Space Station 14 repository](https://github.com/space-wizards/space-station-14) as it contains both RobustToolbox and the content pack for development of new content packs and is the base for your fork.
 
 
-# NOTICE
->
-> This repository hereby named as Omustation Refried or Omu Refried is currently
->
-> ## A GREYBOX
->
+> [!WARNING]
+> This repository hereby named as Omustation Refried or Omu Refried is currently a Greybox.
 > Meaning that everything here is currently under development and is not meant for active hosting or play.
 > There may be significant changes in the project direction, systems, infrastructure, and most importantly, licensing.
 
@@ -24,7 +20,7 @@ If you want to host or create content for SS14, go to the [Space Station 14 repo
 
 You can find general documentation for SS14 under the wizden [docs site](https://docs.spacestation14.com/).
 
-Documentation for custom systems that we host is WIP but you may find some in this repository under [Docs](https://github.com/ProjectOmu/OmustationReFried/tree/master/Docs/README.MD).
+Documentation for custom systems that we host is WIP but you may find some in this repository under [Docs](https://github.com/ProjectOmu/OmustationReFried/blob/master/Docs/README.md).
 
 ## Contributing
 
@@ -54,8 +50,9 @@ Exceptions to this are simple tools like Rider's single-line completion feature.
 
 Most code for the content repository is licensed under the [MIT license](https://github.com/ProjectOmu/OmustationReFried/tree/master/LICENSES/LICENSE.TXT).
 
-Exception to this is the Module packaging system licensed under the [GAG license](https://github.com/ProjectOmu/OmustationReFried/tree/master/LICENSES/LicenseRef-GAG-1.0.txt)
-You can find more information on which files and code are subject to this license in the included [README.MD file](https://github.com/ProjectOmu/OmustationReFried/tree/master/LICENSES/README.MD)
+> [!NOTE]
+> Exception to this is the Module packaging system licensed under the [GAG license](https://github.com/ProjectOmu/OmustationReFried/blob/master/Licenses/LicenseRef-GAG-1.0.txt)
+> You can find more information on which files and code are subject to this license in the included [README.MD file](https://github.com/ProjectOmu/OmustationReFried/blob/master/Licenses/README.MD)
 
 Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and copyright specified in the metadata file. For example, see the [metadata for a crowbar](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
