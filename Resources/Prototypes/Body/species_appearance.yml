@@ -6,6 +6,7 @@
     layers:
     # Torso
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
 
     # Head
     - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -91,7 +92,7 @@
         type: StrippableBoundUserInterface
   - type: InitialBody
     relationships:
-      Torso: [Head, ArmLeft, ArmRight, LegLeft, LegRight, Appendix, Lungs, Heart, Stomach, Liver, Kidneys]
+      Torso: [Head, ArmLeft, ArmRight, LegLeft, LegRight, Appendix, Lungs, Heart, Stomach, Liver, Kidneys, Groin]
       Head: [Brain, Eyes, Tongue, Ears]
       ArmLeft: [HandLeft]
       ArmRight: [HandRight]

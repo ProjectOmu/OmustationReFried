@@ -8,6 +8,7 @@ namespace Content.Shared.Humanoid
             {
                 HumanoidVisualLayers.Chest => true,
                 HumanoidVisualLayers.Head => true,
+                HumanoidVisualLayers.Groin => true,
                 _ => false
             };
         }

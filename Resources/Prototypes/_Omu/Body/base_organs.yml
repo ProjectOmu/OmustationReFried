@@ -1,0 +1,21 @@
+- type: entity
+  parent:
+  - OrganBase
+  - OrganBaseParent
+  - OrganBaseChildExternal
+  id: OrganBaseGroin
+  name: groin
+  abstract: true
+  components:
+  - type: Organ
+    category: Groin
+  - type: Sprite
+    state: groin
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Groin
+    data:
+      state: groin
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Groin
