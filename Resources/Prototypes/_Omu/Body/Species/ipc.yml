@@ -1,0 +1,251 @@
+# IPC MARKINGS
+- type: markingsGroup
+  parent: Undergarments
+  id: IPC
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Head:
+      limit: 1
+      required: true
+      defaultMarkings: [ MobIPCHeadDefault ]
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair: # Omu
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Face:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: true
+      defaultMarkings: [ MobIPCChestDefault ]
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    # enum.HumanoidVisualLayers.Groin:
+    #   limit: 1
+    #   required: true
+    #   defaultMarkings: [ MobIPCGroinDefault ]
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCRLegDefault ]
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCRFootDefault ]
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCLLegDefault ]
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCLFootDefault ]
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCRArmDefault ]
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCRHandDefault ]
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCLArmDefault ]
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+      defaultMarkings: [ MobIPCLHandDefault ]
+    enum.HumanoidVisualLayers.UndergarmentTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.UndergarmentBottom:
+      limit: 1
+      required: false
+
+# IPC APPEARANCE
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceIPC
+  categories: [ HideSpawnMenu ]
+  name: ipc appearance
+  components:
+  - type: Inventory
+    templateId: ipc
+    speciesId: ipc
+  # IPC Only Have 
+  # Eyes, Pump, PositronicBrain
+  - type: InitialBody
+    organs:
+      # Special IPC Organs
+      Brain: PositronicBrain
+      Eyes: OrganIPCEyes
+      Heart: OrganIPCPump
+      # Needed Organs
+      Torso: OrganIPCTorso
+      Head: OrganIPCHead
+      ArmLeft: OrganIPCArmLeft
+      ArmRight: OrganIPCArmRight
+      HandRight: OrganIPCHandRight
+      HandLeft: OrganIPCHandLeft
+      LegLeft: OrganIPCLegLeft
+      LegRight: OrganIPCLegRight
+      FootLeft: OrganIPCFootLeft
+      FootRight: OrganIPCFootRight
+      Lungs: OrganIPCLungs
+      Stomach: OrganIPCStomach
+      Liver: OrganIPCLiver
+      Kidneys: OrganIPCKidneys
+  - type: HumanoidProfile
+    species: IPC
+
+# IPC MOB DEFINITION
+- type: entity
+  parent:
+  - AppearanceIPC
+  - BaseSpeciesMobOrganic
+  id: MobIPC
+  name: Urist McPostronic
+  components:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+
+# IPC ORGANS
+- type: entity
+  parent: OrganBaseOrganic
+  id: OrganIPC
+  abstract: true
+  suffix: IPC
+
+- type: entity
+  id: OrganIPCMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ IPC ]
+
+- type: entity
+  parent: OrganIPC
+  id: OrganIPCInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _EinsteinEngines/Mobs/Species/IPC/organs.rsi
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 10
+
+- type: entity
+  id: OrganIPCVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: IPC
+
+- type: entity
+  parent: [ OrganIPC, OrganIPCVisual ]
+  id: OrganIPCExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganIPCInternal ]
+  id: OrganIPCEyes
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: IPC
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganIPCInternal, OrganIPCMetabolizer ]
+  id: OrganIPCPump
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganIPCExternal ]
+  id: OrganIPCTorso
+  components:
+  - type: Sprite
+    state: torso_m
+  - type: VisualOrgan
+    data:
+      state: torso_m
+    sexStateOverrides:
+      Male: torso_m
+      Female: torso_f
+
+- type: entity
+  parent: [ OrganBaseHead, OrganIPCExternal ]
+  id: OrganIPCHead
+  components: 
+  - type: Sprite
+    state: head_m
+  - type: VisualOrgan
+    data:
+      state: head_m
+    sexStateOverrides:
+      Male: head_m
+      Female: head_f
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganIPCExternal ]
+  id: OrganIPCArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganIPCExternal ]
+  id: OrganIPCArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganIPCExternal ]
+  id: OrganIPCHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganIPCExternal ]
+  id: OrganIPCHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganIPCExternal ]
+  id: OrganIPCLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganIPCExternal ]
+  id: OrganIPCLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganIPCExternal ]
+  id: OrganIPCFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganIPCExternal ]
+  id: OrganIPCFootRight
+
+- type: entity
+  parent: [ OrganBaseLungs, OrganSpriteHumanInternal, OrganAnimalMetabolizer ]
+  id: OrganIPCLungs
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganSpriteHumanInternal, OrganAnimalMetabolizer ]
+  id: OrganIPCStomach
+
+- type: entity
+  parent: [ OrganBaseLiver, OrganSpriteHumanInternal, OrganIPCInternal, OrganAnimalMetabolizer ]
+  id: OrganIPCLiver
+
+- type: entity
+  parent: [ OrganBaseKidneys, OrganSpriteHumanInternal, OrganIPCInternal, OrganAnimalMetabolizer ]
+  id: OrganIPCKidneys

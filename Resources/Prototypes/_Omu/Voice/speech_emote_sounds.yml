@@ -1,0 +1,26 @@
+- type: emoteSounds
+  id: UnisexIPC
+  voiceSelectorName: humanoid-profile-editor-voice-neutral
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_EinsteinEngines/Voice/IPC/robot-scream.ogg
+      params:
+        variation: 0.125
+    Laugh:
+      path: /Audio/_EinsteinEngines/Voice/IPC/robot-laugh_3.ogg
+      params:
+        variation: 0.125
+    Chitter:
+      path: /Audio/Voice/Talk/pai.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
