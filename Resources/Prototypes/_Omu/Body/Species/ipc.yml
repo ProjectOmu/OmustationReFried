@@ -24,10 +24,10 @@
     enum.HumanoidVisualLayers.HeadSide:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.Groin:
-      limit: 1
-      required: true
-      defaultMarkings: [ MobIPCGroinDefault ]
+    # enum.HumanoidVisualLayers.Groin:
+    #   limit: 1
+    #   required: true
+    #   defaultMarkings: [ MobIPCGroinDefault ]
     enum.HumanoidVisualLayers.RLeg:
       limit: 1
       required: false
@@ -85,7 +85,6 @@
       Brain: PositronicBrain
       Eyes: OrganIPCEyes
       Heart: OrganIPCPump
-      Groin: OrganIPCGroin
       # Needed Organs
       Torso: OrganIPCTorso
       Head: OrganIPCHead
@@ -176,19 +175,6 @@
 - type: entity
   parent: [ OrganBaseHeart, OrganIPCInternal, OrganIPCMetabolizer ]
   id: OrganIPCPump
-
-- type: entity
-  parent: [ OrganBaseGroin, OrganIPCExternal ]
-  id: OrganIPCGroin
-  components:
-  - type: Sprite
-    state: groin_m
-  - type: VisualOrgan
-    data:
-      state: groin_m
-    sexStateOverrides:
-      Male: groin_m
-      Female: groin_f
 
 - type: entity
   parent: [ OrganBaseTorso, OrganIPCExternal ]
