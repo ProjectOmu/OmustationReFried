@@ -13,6 +13,7 @@ namespace Content.Shared.Humanoid
         FacialHair,
         UndergarmentTop,
         UndergarmentBottom,
+        Face, // EE  - for IPC
         Chest,
         Head,
         Snout,

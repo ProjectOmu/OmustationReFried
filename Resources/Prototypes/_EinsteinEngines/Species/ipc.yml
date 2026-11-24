@@ -1,0 +1,104 @@
+
+# Head
+- type: marking
+  id: MobIPCHeadDefault
+  bodyPart: Head
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: head_m
+
+# # Torso
+- type: marking
+  id: MobIPCChestDefault
+  bodyPart: Chest
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: torso_m
+
+- type: marking
+  id: MobIPCChestFemaleDefault # Omu
+  bodyPart: Chest
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: torso_f
+
+# # Left Leg
+- type: marking
+  id: MobIPCLLegDefault
+  bodyPart: LLeg
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: l_leg
+
+# # Left Arm
+- type: marking
+  id: MobIPCLArmDefault
+  bodyPart: LArm
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: l_arm
+
+# #LHand
+- type: marking
+  id: MobIPCLHandDefault
+  bodyPart: LHand
+  markingCategory: LeftHand
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: l_hand
+
+# #LFoot
+- type: marking
+  id: MobIPCLFootDefault
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: l_foot
+
+# #RLeg
+- type: marking
+  id: MobIPCRLegDefault
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: r_leg
+
+# #RArm
+- type: marking
+  id: MobIPCRArmDefault
+  bodyPart: RArm
+  markingCategory: RightArm
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: r_arm
+
+# #RHand
+- type: marking
+  id: MobIPCRHandDefault
+  bodyPart: RHand
+  markingCategory: RightHand
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: r_hand
+
+# #RFoot
+- type: marking
+  id: MobIPCRFootDefault
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  groupWhitelist: [ IPC ]
+  sprites:
+  - sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
+    state: r_foot

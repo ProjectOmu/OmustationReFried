@@ -1,0 +1,16 @@
+- type: species
+  id: IPC
+  name: species-name-ipc
+  roundStart: true
+  prototype: MobIPC
+  dollPrototype: AppearanceIPC
+  skinColoration: Hues
+  maleFirstNames: IpcFirst
+  femaleFirstNames: IpcFirst
+  lastNames: IpcLast
+  sexes:
+  - Unsexed
+  defaultSoundsBySex:
+  - UnisexIPC
+  - UnisexIPC
+  - UnisexIPC
