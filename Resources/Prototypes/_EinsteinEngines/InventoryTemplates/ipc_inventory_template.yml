@@ -22,6 +22,28 @@
       uiWindowPos: 1,1
       strippingWindowPos: 1,2
       displayName: Suit
+    # Underwear
+    # - name: undershirt
+    #   slotTexture: undershirt
+    #   slotFlags: UNDERSHIRT
+    #   stripTime: 8
+    #   uiWindowPos: 4,1
+    #   strippingWindowPos: 3,1
+    #   displayName: Undershirt
+    # - name: underpants
+    #   slotTexture: underpants
+    #   slotFlags: UNDERPANTS
+    #   stripTime: 12
+    #   uiWindowPos: 4,0
+    #   strippingWindowPos: 3,2
+    #   displayName: Underpants
+    # - name: socks
+    #   slotTexture: socks
+    #   slotFlags: SOCKS
+    #   stripTime: 8
+    #   uiWindowPos: 4,2
+    #   strippingWindowPos: 3,3
+    #   displayName: Socks
     - name: gloves
       slotTexture: gloves
       slotFlags: GLOVES
@@ -43,6 +65,8 @@
       whitelist:
         components:
         - IdentityBlocker
+        # tags: # Omu - todo add this back in?
+        # - IPCMaskWearable # Omu
     - name: eyes
       slotTexture: glasses
       slotFlags: EYES
@@ -50,6 +74,13 @@
       uiWindowPos: 0,3
       strippingWindowPos: 0,0
       displayName: Eyes
+    # - name: ears
+    #   slotTexture: ears
+    #   slotFlags: EARS
+    #   stripTime: 3
+    #   uiWindowPos: 2,0
+    #   strippingWindowPos: 2,0
+    #   displayName: Ears
     - name: head
       slotTexture: head
       slotFlags: HEAD
