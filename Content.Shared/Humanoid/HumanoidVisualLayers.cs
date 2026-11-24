@@ -15,7 +15,6 @@ namespace Content.Shared.Humanoid
         UndergarmentBottom,
         Face, // EE  - for IPC
         Chest,
-        Groin, // EE - for IPC
         Head,
         Snout,
         SnoutCover, // things layered over snouts (i.e. noses)
