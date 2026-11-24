@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
 
 - files: ["beep_500.ogg", "beep_2000.ogg"]
   license: "CC0-1.0"
