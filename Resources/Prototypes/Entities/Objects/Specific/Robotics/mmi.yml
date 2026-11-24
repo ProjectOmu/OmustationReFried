@@ -71,7 +71,7 @@
         - Brain
 
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, OrganBaseChildInternal ] # Omu - IPC
   id: PositronicBrain
   name: positronic brain
   description: An artificial brain capable of spontaneous neural activity.
@@ -99,10 +99,8 @@
       stopSearchVerbText: positronic-brain-stop-searching-verb-text
       stopSearchVerbPopup: positronic-brain-stopped-searching
       job: Borg
-    - type: Organ
-      category: PosBrain
-    - type: ChildOrgan
-    - type: InternalChildOrgan
+    - type: Organ # Omu - IPC
+      category: PosBrain # Omu
     - type: BlockMovement
     - type: Examiner
     - type: BorgBrain
