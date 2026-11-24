@@ -165,12 +165,8 @@
     sprite: _EinsteinEngines/Mobs/Species/IPC/parts.rsi
 
 - type: entity
-  parent: [ OrganBaseEyes, OrganIPCInternal ]
+  parent: [ OrganIPCVisual, OrganBaseEyes, OrganIPCInternal ]
   id: OrganIPCEyes
-  components:
-  - type: VisualOrganMarkings
-    markingData:
-      group: IPC
 
 - type: entity
   parent: [ OrganBaseHeart, OrganIPCInternal, OrganIPCMetabolizer ]
